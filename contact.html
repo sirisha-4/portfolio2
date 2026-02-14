@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Sai Sirisha</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #050505;
+            --text-color: #ffffff;
+            --text-muted: #b3b3b3;
+            --primary-pink: #ff007f;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --transition: all 0.4s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* BACKGROUND CANVAS */
+        #bg-canvas {
+            position: fixed;
+            inset: 0;
+             top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;          /* push it further back */
+    pointer-events: none;
+        }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(5,5,5,0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary-pink);
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--primary-pink);
+            transition: var(--transition);
+        }
+
+        .navbar a:hover::after,
+        .navbar a.active::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* MAIN */
+        main {
+            padding-top: 120px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background: var(--primary-pink);
+            display: block;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            margin-top: 1rem;
+        }
+
+        /* CONTACT */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .contact-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+
+        .contact-card h3 {
+            color: var(--primary-pink);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info i {
+            color: var(--primary-pink);
+            margin-right: 10px;
+        }
+
+        form input,
+        form textarea {
+            width: 100%;
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            padding: 12px 15px;
+            color: white;
+            border-radius: 8px;
+            margin-bottom: 1.2rem;
+        }
+
+        form input:focus,
+        form textarea:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+        }
+
+        form textarea {
+            resize: none;
+            height: 130px;
+        }
+
+        .btn {
+            background: var(--primary-pink);
+            border: none;
+            padding: 12px 30px;
+            color: white;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            box-shadow: 0 0 15px var(--primary-pink);
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        footer {
+            background: #000;
+            padding: 2rem 5%;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 4rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            border: 1px solid var(--glass-border);
+            color: white;
+            margin: 0 8px;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary-pink);
+            box-shadow: 0 0 15px var(--primary-pink);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .navbar ul {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        header,
+main,
+footer {
+    position: relative;
+    z-index: 1;
+}
+.contact-card {
+    backdrop-filter: blur(12px);
+}
+
+    </style>
+</head>
+
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<header>
+    <a href="home.html" class="logo">Port<span>folio</span></a>
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+    </nav>
+</header>
+
+<main>
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Get In Contact</h2>
+            <p class="section-subtitle">Let’s work together or just say hello 👋</p>
+        </div>
+
+        <div class="contact-wrapper">
+            <div class="contact-card contact-info">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-envelope"></i> sirishakota970@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +91 95022037821</p>
+                <p><i class="fas fa-map-marker-alt"></i> Anathavaram</p>
+            </div>
+
+            <div class="contact-card">
+                <h3>Send Message</h3>
+                <form>
+                    <input type="text" placeholder="Your Name">
+                    <input type="email" placeholder="Your Email">
+                    <textarea placeholder="Your Message"></textarea>
+                    <button type="button" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="social-links">
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="mailto:example@gmail.com"><i class="fas fa-envelope"></i></a>
+    </div>
+    <p>&copy; 2025 Sirisha. All rights reserved.</p>
+</footer>
+
+<script>
+    /* SAME PARTICLE BACKGROUND AS PROJECTS PAGE */
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let particlesArray;
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+
+    window.addEventListener('resize', () => {
+        resizeCanvas();
+        initParticles();
+    });
+
+    const mouse = { x: null, y: null, radius: 150 };
+
+    window.addEventListener('mousemove', e => {
+        mouse.x = e.x;
+        mouse.y = e.y;
+    });
+
+    window.addEventListener('mouseout', () => {
+        mouse.x = undefined;
+        mouse.y = undefined;
+    });
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2 + 1;
+            this.speedX = Math.random() - 0.5;
+            this.speedY = Math.random() - 0.5;
+            this.density = Math.random() * 30 + 1;
+            this.isPink = Math.random() > 0.8;
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = this.isPink ? '#ff007f' : 'rgba(255,255,255,0.3)';
+            ctx.shadowBlur = this.isPink ? 10 : 0;
+            ctx.shadowColor = '#ff007f';
+            ctx.fill();
+        }
+
+        update() {
+            let dx = mouse.x - this.x;
+            let dy = mouse.y - this.y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < mouse.radius) {
+                this.x -= (dx / distance) * this.density;
+                this.y -= (dy / distance) * this.density;
+            } else {
+                this.x += this.speedX;
+                this.y += this.speedY;
+            }
+
+            if (this.x < 0) this.x = canvas.width;
+            if (this.x > canvas.width) this.x = 0;
+            if (this.y < 0) this.y = canvas.height;
+            if (this.y > canvas.height) this.y = 0;
+
+            this.draw();
+        }
+    }
+
+    function initParticles() {
+        particlesArray = [];
+        let count = (canvas.width * canvas.height) / 9000;
+        for (let i = 0; i < count; i++) {
+            particlesArray.push(new Particle());
+        }
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particlesArray.forEach(p => p.update());
+        requestAnimationFrame(animate);
+    }
+
+    initParticles();
+    animate();
+
+    /* MOBILE MENU */
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.navbar ul');
+
+    menuToggle.addEventListener('click', () => {
+        navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        navMenu.style.flexDirection = 'column';
+    });
+</script>
+
+</body>
+</html>
